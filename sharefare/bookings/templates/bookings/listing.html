@@ -1,0 +1,47 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<head>
+
+<link rel="stylesheet" type="text/css" href={% static "bookings/theme.css" %}>
+
+<script href={% static "bookings/maps.js" %}></script>
+
+<script type="text/javascript" src= {% static "/bookings/jquery-1.2.6.min.js" %}></script>
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<title>Listings</title>
+
+</head>
+
+<BODY>
+
+<BR><H1>Listings</H1><BR>
+
+
+{% if latest_listings %}
+    <table id="users">
+    <TR>
+    	<TH>Host</TH>
+    	<TH>From</TH>
+    	<TH>To</TH>
+    	<TH>Distance</TH>
+    	<TH>Cost</TH>
+        <TH></TH>
+
+    </TR>
+    {% for listings in latest_listings %}
+    <TR>
+        <td>{{listings.Host_ID}}</td>
+        <td>{{ listings.From }}</td>
+        <td>{{listings.To}}</td>
+        <td>{{listings.Distance}}</td>
+        <td>{{listings.Cost}}</td>
+        <td><form action="" method="POST">{% csrf_token %}<button type=submit class="btn btn-success" name="request_ride" value={{listings.Host_ID}} style="width:100%">Request Ride</button></form></td>
+    </TR>
+    {% endfor %}
+    
+{% else %}
+    <p>No Listings are available.</p>
+{% endif %}
+</BODY>

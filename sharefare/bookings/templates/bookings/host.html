@@ -1,0 +1,27 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<head>
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<title>Listings</title>
+
+<script type="text/javascript" src={% static "bookings/jquery-1.2.6.min.js" %}>
+</script>
+</head>
+
+<BODY>
+{%if host_list%}
+{%for hosts in host_list%}
+<BR><H1>Host a ride now {{hosts.first_name}}! </H1> <BR><BR><BR>
+{%endfor%}
+<p align="center">
+<form action="" method="POST" align="center">
+{% csrf_token %}
+I can host <input type="text" id="Seats" name="Seats" size="1"> from <input id="From" type="text" name="From" size="15"> to <input type="text" size="15" id="To" name="To"> at <input type="datetime-local" name="FromTime"> for Rs. <input type="text" name="Cost" id="Fare" size="3"><BR><BR><BR>
+<button type=submit class="btn btn-success" name="HostRide" value="Submit">Set Me up!</button>
+</form>
+</p>
+{%endif%}
+
+</BODY>

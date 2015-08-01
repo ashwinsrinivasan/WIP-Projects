@@ -1,0 +1,39 @@
+
+{% load staticfiles %}
+
+
+<link rel="stylesheet" type="text/css" href={% static "bookings/theme.css" %}>
+
+<BR><BR><H1>List of Users</H1><BR>
+
+{% if user_list %}
+    <table id="users">
+    <TR>
+    	<TH>First Name</TH>
+    	<TH>Last Name</TH>
+    	<TH>Email ID</TH>
+    	<TH>Company</TH>
+    	<TH>Car</TH>
+    	<TH>Car Model</TH>
+    	<TH>From</TH>
+    	<TH>To</TD>
+
+
+    </TR>
+    {% for users in user_list %}
+    <TR>
+        <td>{{users.first_name}}</td> 
+        <td>{{ users.last_name }}</td> 
+        <td>{{users.email}}</td> 
+        <td>{{users.Company}}</td> 
+        <td>{{users.Car}}</td> 
+        <td>{{users.Car_Model}}</td> 
+        <td>{{users.Freq_From_1}}</td>
+        <td>{{users.Freq_To_1}}</td>  
+    </TR>
+    {% endfor %}
+    
+    </table>
+{% else %}
+    <p>No Usera are not available.</p>
+{% endif %}

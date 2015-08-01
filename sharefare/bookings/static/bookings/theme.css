@@ -1,0 +1,40 @@
+#users {
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#users td {
+    font-size: 1em;
+    border: 1px dotted #b5b5dd;
+    padding: 3px 7px 2px 7px;
+}
+
+
+#users th {
+    border: 1px dotted #b5b5dd;
+    padding: 3px 7px 2px 7px;
+    font-size: 1.1em;
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    background-color: #A7C942;
+    color: #ffffff;
+}
+
+#users tr.alt td {
+    color: #000000;
+    background-color: #EAF2D3;
+}
+#map-canvas {
+        height: 800px;
+        width: 800px;
+        text-align: center;
+        margin-left: 51px;
+        margin: 0px;
+        padding: 0px
+        }
+
+.gm-style-iw{
+       height: 100% !important;
+       overflow: hidden !important;
