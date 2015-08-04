@@ -69,7 +69,7 @@ class Transaction(models.Model):
     #Guest_ID = models.PositiveIntegerField()
     Guest_ID = models.ForeignKey(User,to_field='User_ID',related_name='Trans_Guest_FK')
     #Booking_ID = models.PositiveIntegerField()
-    Booking_ID = models.ForeignKey(Booking,to_field='Booking_ID',related_name='Trans_Booking_FK')
+    #Booking_ID = models.ForeignKey(Booking,to_field='Booking_ID',related_name='Trans_Booking_FK')
     Distance = models.DecimalField(max_digits=6,decimal_places=2)
     Cost = models.DecimalField(max_digits=6,decimal_places=2)
     Feedback_Host = models.CharField(max_length=30)

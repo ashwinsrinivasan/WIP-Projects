@@ -4,7 +4,7 @@
 <head>
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<title>Listings</title>
+<title>Host a Ride</title>
 
 <script type="text/javascript" src={% static "bookings/jquery-1.2.6.min.js" %}>
 </script>
@@ -18,7 +18,7 @@
 <p align="center">
 <form action="" method="POST" align="center">
 {% csrf_token %}
-I can host <input type="text" id="Seats" name="Seats" size="1"> from <input id="From" type="text" name="From" size="15"> to <input type="text" size="15" id="To" name="To"> at <input type="datetime-local" name="FromTime"> for Rs. <input type="text" name="Cost" id="Fare" size="3"><BR><BR><BR>
+I can host <input type="text" id="Seats" name="Seats" size="1"> from <input id="From" type="text" name="From" size="15"> to <input type="text" size="15" id="To" name="To"> on <input type="datetime-local" name="FromTime"> for Rs. <input type="text" name="Cost" id="Fare" size="3"> each<BR><BR><BR>
 <button type=submit class="btn btn-success" name="HostRide" value="Submit">Set Me up!</button>
 </form>
 </p>

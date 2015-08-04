@@ -16,7 +16,15 @@ def listing(request):
     latest_listings = Listing.objects.all()
     context = {'latest_listings' : latest_listings,}
     if request.method == 'POST':
-    	#Code logic for what happens when a Guest Requests a ride
+    	#Generate Booking ID and notify Folks:
+    	#GenerateBookingID(Guest,Host,Listing_ID)
+    	#return HttpResponse("Your Booking ID is %s",% BookingID)
+        #Notify both Guest and Host of time and place : Email
+        #Notify(Host_ID,Guest_ID)
+
+        #Code for when Transaction Happens
+    	#Transact(Booing_ID,Host_ID,Guest_ID,Cost,Guest_Feedback,Host_Feedback)
+
     	return HttpResponse("Login Screen")
     return render(request, 'bookings/listing.html', context)
 

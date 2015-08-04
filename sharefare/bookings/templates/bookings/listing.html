@@ -5,9 +5,77 @@
 
 <link rel="stylesheet" type="text/css" href={% static "bookings/theme.css" %}>
 
-<script href={% static "bookings/maps.js" %}></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="788976715771-ornmg7gkn8vld8mlou33s7182r5di183.apps.googleusercontent.com">
 
-<script type="text/javascript" src= {% static "/bookings/jquery-1.2.6.min.js" %}></script>
+<script href={% static "bookings/gSignIn.js" %}></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+
+<script>
+  function initialize() {}
+</script>
+
+<script>
+var map;
+
+  function initialize() {
+
+    var mapCanvas = document.getElementById('map-canvas');
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(41.5403, -72.5463)
+    var mapOptions = {
+      center: latlng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(mapCanvas, mapOptions);
+    var marker = new google.maps.Marker({
+      position: latlng,
+      map: map,
+      title: 'Listings Map'
+  });
+}
+    
+function codeAddress(addressArray) {
+    var geocoder;
+    var mapCanvas = document.getElementById('map-canvas');
+    geocoder = new google.maps.Geocoder();
+    var mapOptions = {
+      //center: new google.maps.LatLng(41.5403, -72.5463),
+      zoom: 12,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(mapCanvas, mapOptions);
+    //initialize();
+  // var address = document.getElementById('address').value;
+  //var address = {{ latest_listings.From }}
+  var marker = [];
+  //{% for listings in latest_listings %}
+  //address= document.getElementById('').value;
+  //{% endfor %}
+  for (var i = addressArray.length - 1; i >= 0; i--) 
+  {
+
+    geocoder.geocode({'address': addressArray[i]},function(results, status){
+        if (status == google.maps.GeocoderStatus.OK) 
+        {
+               map.setCenter(results[0].geometry.location);
+               marker[i] = new google.maps.Marker({map: map,position:results[0].geometry.location});
+        } 
+        else
+        {
+              alert('Geocode was not successful for the following reason: ' + address);
+        }
+    });
+
+  };
+ }
+  google.maps.event.addDomListener(window, 'load', codeAddress());
+</script>
+
+
+<script type="text/javascript" href= {% static "/bookings/jquery-1.2.6.min.js" %}></script>
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <title>Listings</title>
@@ -15,9 +83,30 @@
 </head>
 
 <BODY>
+{% autoescape on %}
+<BR>
+<div class="g-signin2" data-onsuccess="onSignIn"></div><BR>
+
+
+
 
 <BR><H1>Listings</H1><BR>
 
+<div align="center">
+
+<div id="map-canvas" ></div>
+</div>
+<script> 
+var addressArray=[];
+
+{% for listings in latest_listings %}
+addressArray[{{forloop.counter0}}] = "{{listings.From}}"
+{% endfor %}
+
+ window.codeAddress(addressArray);
+</script>
+
+<BR>
 
 {% if latest_listings %}
     <table id="users">
@@ -30,18 +119,27 @@
         <TH></TH>
 
     </TR>
+
+
+
     {% for listings in latest_listings %}
     <TR>
-        <td>{{listings.Host_ID}}</td>
-        <td>{{ listings.From }}</td>
-        <td>{{listings.To}}</td>
-        <td>{{listings.Distance}}</td>
-        <td>{{listings.Cost}}</td>
-        <td><form action="" method="POST">{% csrf_token %}<button type=submit class="btn btn-success" name="request_ride" value={{listings.Host_ID}} style="width:100%">Request Ride</button></form></td>
+
+    <form action="" method="POST">{% csrf_token %}
+        <td headers="Host_ID">{{listings.Host_ID}}</td>
+        <td headers="From">{{ listings.From }}</td>
+        <td headers="To">{{listings.To}}</td>
+        <td headers="Distance">{{listings.Distance}}</td>
+        <td headers="Cost">{{listings.Cost}}</td>
+        <td><button type=submit class="btn btn-success" name="request_ride" value={{listings.Host_ID}} style="width:100%">Request Ride</button></td>
+    </form>
     </TR>
     {% endfor %}
+
     
 {% else %}
     <p>No Listings are available.</p>
 {% endif %}
+
+{% endautoescape %}
 </BODY>

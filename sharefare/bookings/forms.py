@@ -5,3 +5,13 @@ class AddListingForm(ModelForm):
     class Meta:
         model = Listing
         fields = ['Listing_ID', 'From', 'To','Start_Time','Host_ID','Cost','Distance']
+
+#class RideRequestForm(ModelForm):
+#    class Meta:
+#        model = Listing
+#        fields = ['Listing_ID', 'From', 'To','Start_Time','Host_ID','Cost','Distance']
+
+#class TransactionForm(ModelForm):
+#    class Meta:
+#        model = Transaction
+#        fields = ['Listing_ID', 'From', 'To','Start_Time','Host_ID','Cost','Distance']

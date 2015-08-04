@@ -27,12 +27,13 @@
     background-color: #EAF2D3;
 }
 #map-canvas {
-        height: 800px;
-        width: 800px;
+        height: 300px;
+        width: 750px;
         text-align: center;
         margin-left: 51px;
         margin: 0px;
-        padding: 0px
+        padding: 0px;
+        background-color: #CCC;
         }
 
 .gm-style-iw{
