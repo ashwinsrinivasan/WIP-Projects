@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "Wardrobe",
+    "slug": "wardrobe-outfit-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "backgroundColor": "#0A0A0A"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.wardrobe.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Used to photograph your clothing items",
+        "NSPhotoLibraryUsageDescription": "Used to select clothing photos from your library"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#0A0A0A"
+      },
+      "package": "com.wardrobe.app",
+      "permissions": ["CAMERA", "READ_EXTERNAL_STORAGE"]
+    },
+    "plugins": [
+      "expo-router",
+      "expo-camera",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow Wardrobe to access your photos to add clothing items."
+        }
+      ]
+    ],
+    "scheme": "wardrobe",
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
